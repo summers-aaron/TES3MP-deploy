@@ -63,7 +63,7 @@ function run_in_container() {
   CONTAINER_IMAGE="docker.io/grimkriegor/tes3mp-forge:$TES3MP_FORGE_VERSION"
   CONTAINER_FOLDER_NAME="container"
   CONTAINER_DEFAULT_ARGS="--skip-pkgs --cmake-local"
-  CONTAINER_PLATFORM_CMD="--arch amd64"
+  CONTAINER_PLATFORM_CMD="--platform amd64"
 
   # Architecture specifics
   case $CONTAINER_ARCHITECTURE in
@@ -350,6 +350,7 @@ if [ $INSTALL ]; then
           libmygui-dev \
           libunshield-dev \
           cmake \
+          ffmpeg \
           build-essential \
           g++ \
           libncurses5-dev \
@@ -838,6 +839,18 @@ if [ $MAKE_PACKAGE ]; then
     "libRakNetLibStatic.a" \
     "libtinfo.so" \
     "liblua5.1.so" \
+    "libavcodec.so" \
+    "libavformat.so" \
+    "libavutil.so" \
+    "libswscale.so" \
+    "libswresample.so" \
+    "libvpx.so" \
+    "libwebp.so" \
+    "libcrystalhd.so" \
+    "libaom.so" \
+    "libcodec2.so" \
+    "libx264.so" \
+    "libx265.so"
    )
 
   LIBRARIES_EXTRA=( \
@@ -849,7 +862,7 @@ if [ $MAKE_PACKAGE ]; then
     "libboost_filesystem.so" \
     "libboost_program_options.so" \
     "libboost_iostreams.so" \
-    "liblua5.1.so" \
+    "liblua5.1.so"
   )
 
   # Exit if tes3mp hasn't been compiled yet
